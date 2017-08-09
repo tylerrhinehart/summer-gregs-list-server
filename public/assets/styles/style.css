@@ -1,0 +1,29 @@
+.listing-image {
+    height: 200px;
+    width: 200px;
+}
+
+.card {
+    background-color: darkgrey;
+    margin: 10px;
+    padding: 10px;
+}
+
+body {
+    text-align: center;
+}
+
+form {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.form-control {
+    max-width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#place-form {
+    margin-top: 2vh;
+}
