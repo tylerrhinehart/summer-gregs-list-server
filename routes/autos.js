@@ -8,7 +8,7 @@ var mongoose = require('mongoose')
 
 var autoSchema = new mongoose.Schema({
 	make: { type: String, required: true },
-	model: { type: Number, required: true },
+	model: { type: String, required: true },
 	price: { type: Number, required: true },
 	img: { type: String }
 })

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 var connection = mongoose.connection
 
-mongoose.connect('mongodb://test:test@ds141118.mlab.com:41118/gregslist', {
+mongoose.connect('mongodb://test:test@ds039155.mlab.com:39155/gregslist', {
   server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
   replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }
 })

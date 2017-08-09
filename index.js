@@ -14,9 +14,11 @@ server.use(expressSanitizer());
 
 var housesRouter = require('./routes/houses');
 var jobsRouter = require('./routes/jobs');
+var autosRouter = require('./routes/autos');
 
 server.use('/api/houses', housesRouter);
 server.use('/api/jobs', jobsRouter);
+server.use('/api/autos', autosRouter);
 
 server.listen(port, () => {
 
