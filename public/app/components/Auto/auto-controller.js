@@ -2,8 +2,8 @@ function AutoController() {
     var autoService = new AutoService()
 
     function drawAutos(autos) {
-        console.log(autos)
         var template = ''
+        console.log(autos)
         autos.forEach((auto) => {
             template += `
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -33,7 +33,7 @@ function AutoController() {
         }
 
         autoService.addAuto(auto)
-            .then(autoService.getAutos(drawAutos))
+        autoService.getAutos(drawAutos)
         form.reset()
     }
 

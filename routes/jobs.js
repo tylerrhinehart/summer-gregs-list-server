@@ -34,10 +34,38 @@ router.post('/', function (req, res, next) {
 
 router.get('/:jobId', function (req, res, next) {
 
-	let jobId = req.params.jobId;
-
+	var jobId = req.params.jobId;
+	Jobs.findById(jobId)
+		.then(job => {
+			if (job) {
+				res.send(job)
+			}
+			else {
+				next({ message: 'No job' })
+			}
+		})
+		.catch(next)
 
 });
+
+router.put('/jobId', function (req, res, next) {
+	var jobId = req.params.jobId
+	var updatedJobObj = req.body
+	Jobs.findByIdAndUpdate(jobId, updatedJobObj)
+		.then(job => {
+			res.send({ message: 'Updated job' })
+		})
+		.catch(next)
+})
+
+router.delete('/:jobId', function (req, res, next) {
+	var jobId = req.params.jobId
+	Jobs.findByIdAndRemove(jobId)
+		.then(job => {
+			res.send({ message: 'Removed house' })
+		})
+		.catch(next)
+})
 
 // router.get('/search/:price/:footage?', function (req, res) {
 

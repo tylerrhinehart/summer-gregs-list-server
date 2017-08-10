@@ -35,10 +35,38 @@ router.post('/', function (req, res, next) {
 router.get('/:houseId', function (req, res, next) {
 
 	// req.params.houseId = 1234
-	let houseId = req.params.houseId;
-
+	var houseId = req.params.houseId;
+	Houses.findById(houseId)
+		.then(house => {
+			if (house) {
+				res.send(house)
+			}
+			else {
+				next({message: 'No house'})
+			}
+		})
+		.catch(next)
 
 });
+
+router.put('/houseId', function (req, res, next) {
+	var houseId = req.params.houseId
+	var updatedHouseObj = req.body
+	Houses.findByIdAndUpdate(houseId, updatedHouseObj)
+		.then(house => {
+			res.send({message: 'Updated house'})
+		})
+		.catch(next)
+})
+
+router.delete('/:houseId', function (req, res, next) {
+	var houseId = req.params.houseId
+	Houses.findByIdAndRemove(houseId)
+		.then(house => {
+			res.send({message: 'Removed house'})
+		})
+		.catch(next)
+})
 
 // router.get('/search/:price/:footage?', function (req, res) {
 

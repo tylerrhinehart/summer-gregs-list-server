@@ -2,10 +2,6 @@ var express = require('express')
 var router = express.Router()
 var mongoose = require('mongoose')
 
-// WHAT IS A HOUSE?
-
-// SCHEMA === CLASS
-
 var autoSchema = new mongoose.Schema({
 	make: { type: String, required: true },
 	model: { type: String, required: true },
@@ -33,10 +29,38 @@ router.post('/', function (req, res, next) {
 
 router.get('/:autoId', function (req, res, next) {
 
-	let autoId = req.params.autoId;
-
+	var autoId = req.params.autoId;
+	Autos.findById(autoId)
+		.then(auto => {
+			if (auto) {
+				res.send(auto)
+			}
+			else {
+				next({message: 'No auto'})
+			}
+		})
+		.catch(next)
 
 });
+
+router.put('/autoId', function (req, res, next) {
+	var autoId = req.params.autoId
+	var updatedAutoObj = req.body
+	Autos.findByIdAndUpdate(autoId, updatedAutoObj)
+		.then(auto => {
+			res.send({message: 'Updated auto'})
+		})
+		.catch(next)
+})
+
+router.delete('/:autoId', function (req, res, next) {
+	var autoId = req.params.autoId
+	Autos.findByIdAndRemove(autoId)
+		.then(auto => {
+			res.send({message: 'Removed auto'})
+		})
+		.catch(next)
+})
 
 // router.get('/search/:price/:footage?', function (req, res) {
 
