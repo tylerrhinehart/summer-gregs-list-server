@@ -18,6 +18,7 @@ function AutoController() {
                             <h4>Price: $${auto.price}</h4>
                         </div>
                         <button type="button" onclick="app.controllers.autoController.deleteAuto('${auto._id}')">Delete</button>
+                        <button type="button" onclick="app.controllers.autoController.editAuto('${auto._id}')">Edit</button>
                     </div>
                 </div>
             `
@@ -41,7 +42,11 @@ function AutoController() {
     }
 
     this.deleteAuto = function(autoId) {
-        autoService.deleteAuto(autoId, drawAutos)
+        autoService.deleteAuto(autoId, getAutos)
+    }
+
+    this.editAuto = function(autoId) {
+        autoService.editAuto(autoId, getAutos)
     }
 
     this.addButton = function () {

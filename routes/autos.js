@@ -43,7 +43,7 @@ router.get('/:autoId', function (req, res, next) {
 
 });
 
-router.put('/autoId', function (req, res, next) {
+router.put('/:autoId', function (req, res, next) {
 	var autoId = req.params.autoId
 	var updatedAutoObj = req.body
 	Autos.findByIdAndUpdate(autoId, updatedAutoObj)
