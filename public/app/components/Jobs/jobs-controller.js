@@ -2,7 +2,7 @@ function JobsController() {
     var jobsService = new JobsService()
 
     function getJobs() {
-        jobService.getJobs(drawJobs)
+        jobsService.getJobs(drawJobs)
     }
 
     function drawJobs(jobs) {
@@ -17,6 +17,7 @@ function JobsController() {
                             <h4>Hours: ${job.hours}</h4>
                             <h4>Salary: $${job.salary}</h4>
                         </div>
+                        <button type="button" onclick="app.controllers.autoController.deleteAuto('${job._id}')">Delete</button>
                     </div>
                 </div>
             `
@@ -41,6 +42,7 @@ function JobsController() {
     this.addButton = function() {
         var template = '<button type="button" class="btn btn-primary" onclick="app.controllers.jobsController.addForm()">Add New Job</button>'
         document.getElementById('place-form').innerHTML = template
+        getJobs()
     }
 
     this.addForm = function() {

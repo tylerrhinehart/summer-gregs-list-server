@@ -1,23 +1,17 @@
 function HomeService() {
 
-    var homes = JSON.parse(localStorage.getItem('homes')) || []
+    var myHomes = []
 
-    function saveHomes(){
-        localStorage.setItem('homes', JSON.stringify(homes))
+    this.getHomes = function (cb) {
+        $.get('/api/houses').then((homes) => {
+            myHomes = homes
+            cb(myHomes)
+        })
     }
 
-    this.getHomes = function(cb) {
-        cb(JSON.parse(JSON.stringify(homes)))
+    this.addHome = function (home, cb) {
+        $.post('/api/houses', home).then(() => {
+            cb()
+        })
     }
-
-    this.addHome = function(home){
-        homes.push(home)
-        saveHomes()
-    }
-
-    this.getHomes = function(cb) {
-        cb(homes)
-    }
-
-
 }

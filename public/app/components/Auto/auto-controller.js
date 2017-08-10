@@ -17,6 +17,7 @@ function AutoController() {
                             <h4>Model: ${auto.model}</h4>
                             <h4>Price: $${auto.price}</h4>
                         </div>
+                        <button type="button" onclick="app.controllers.autoController.deleteAuto('${auto._id}')">Delete</button>
                     </div>
                 </div>
             `
@@ -37,6 +38,10 @@ function AutoController() {
 
         autoService.addAuto(auto, getAutos)
         form.reset()
+    }
+
+    this.deleteAuto = function(autoId) {
+        autoService.deleteAuto(autoId, drawAutos)
     }
 
     this.addButton = function () {

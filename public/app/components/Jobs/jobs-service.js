@@ -1,22 +1,17 @@
 function JobsService() {
 
-    var jobs = JSON.parse(localStorage.getItem('jobs')) || []
+    var myJobs = []
 
-    function saveJobs(){
-        localStorage.setItem('jobs', JSON.stringify(jobs))
+    this.getJobs = function (cb) {
+        $.get('/api/jobs').then((jobs) => {
+            myJobs = jobs
+            cb(myJobs)
+        })
     }
 
-    this.getJobs = function(cb) {
-        cb(JSON.parse(JSON.stringify(jobs)))
+    this.addJob = function (job, cb) {
+        $.post('/api/jobs', job).then(() => {
+            cb()
+        })
     }
-
-    this.addJob = function(job){
-        jobs.push(job)
-        saveJobs()
-    }
-
-    this.getJobs = function(cb) {
-        cb(jobs)
-    }
-
 }

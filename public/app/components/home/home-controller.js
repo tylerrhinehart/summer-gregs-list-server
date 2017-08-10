@@ -17,6 +17,7 @@ function HomeController() {
                             <h4>Sq ft: ${home.sqft}</h4>
                             <h4>Price: $${home.price}</h4>
                         </div>
+                        <button type="button" onclick="app.controllers.autoController.deleteAuto('${home._id}')">Delete</button>
                     </div>
                 </div>
             `
@@ -42,6 +43,7 @@ function HomeController() {
     this.addButton = function() {
         var template = '<button type="button" class="btn btn-primary" onclick="app.controllers.homeController.addForm()">Add New Home</button>'
         document.getElementById('place-form').innerHTML = template
+        getHomes()
     }
 
     this.addForm = function() {
