@@ -1,29 +1,37 @@
 function AutoService() {
 
     // var autos = JSON.parse(localStorage.getItem('autos')) || []
-    var autos = $.get('localhost:3000/api/autos') || []
+    var myAutos = []
 
     // function saveAutos(){
     //     localStorage.setItem('autos', JSON.stringify(autos))
     // }
 
-    this.getAutos = function (cb) {
-        cb(JSON.parse(JSON.stringify(autos)))
-    }
-
-    this.addAuto = function (auto) {
-        $.post('localhost:3000/api/autos', auto)
-        .then(function () {
-            $.get('localhost:3000/api/autos', function (data) {
-                console.log(data)
-            })
+    this.getAutos = function getAutos(callback) {
+        $.get('/api/autos').then((autos) => {
+            myAutos = autos
+            callback(myAutos)
         })
-        // autos.push(auto)
-        // saveAutos()
     }
 
-    this.getAutos = function (cb) {
-        cb(autos)
+    // this.getAutos = function (cb) {
+    //     cb(JSON.parse(JSON.stringify(autos)))
+    // }
+
+    this.addAuto = function (auto, cb) {
+        $.post('/api/autos', auto).then(() => {
+            cb()
+        })
     }
+
+    // this.addAuto = function (auto, cb) {
+    //     $.post('/api/autos', auto)
+    //         .then(function () {
+    //             $.get('/api/autos', function (data) {
+    //                 console.log(data)
+    //                 cb()
+    //             })
+    //         })
+    // }
 
 }

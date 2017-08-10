@@ -1,6 +1,10 @@
 function HomeController() {
     var homeService = new HomeService()
 
+    function getHomes() {
+        homeService.getHomes(drawHomes)
+    }
+
     function drawHomes(homes) {
         var template = ''
         homes.forEach((home) => {
@@ -31,8 +35,7 @@ function HomeController() {
             img: form.img.value
         }
 
-        homeService.addHome(home)
-        homeService.getHomes(drawHomes)
+        homeService.addHome(home, getHomes)
         form.reset()
     }
 

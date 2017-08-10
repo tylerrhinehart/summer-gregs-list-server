@@ -1,6 +1,10 @@
 function JobsController() {
     var jobsService = new JobsService()
 
+    function getJobs() {
+        jobService.getJobs(drawJobs)
+    }
+
     function drawJobs(jobs) {
         var template = ''
         jobs.forEach((job) => {
@@ -30,8 +34,7 @@ function JobsController() {
             img: form.img.value
         }
 
-        jobsService.addJob(job)
-        jobsService.getJobs(drawJobs)
+        jobsService.addJob(job, getJobs)
         form.reset()
     }
 

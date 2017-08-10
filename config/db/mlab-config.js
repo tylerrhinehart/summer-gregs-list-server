@@ -7,7 +7,7 @@ mongoose.connect('mongodb://test:test@ds039155.mlab.com:39155/gregslist', {
 })
 
 connection.on('error', (err) =>{
-  console.log('SOMETING FAILED WHEN CONNECTING TO MLAB', err)
+  console.log('SOMETING FAILED WHEN CONNECTING TO MLAB ', err)
 });
 
 connection.once('open', () => {

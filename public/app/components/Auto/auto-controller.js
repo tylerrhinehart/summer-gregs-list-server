@@ -1,9 +1,12 @@
 function AutoController() {
     var autoService = new AutoService()
 
+    function getAutos() {
+        autoService.getAutos(drawAutos)
+    }
+
     function drawAutos(autos) {
         var template = ''
-        console.log(autos)
         autos.forEach((auto) => {
             template += `
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -32,14 +35,14 @@ function AutoController() {
             img: form.img.value
         }
 
-        autoService.addAuto(auto)
-        autoService.getAutos(drawAutos)
+        autoService.addAuto(auto, getAutos)
         form.reset()
     }
 
     this.addButton = function () {
         var template = '<button type="button" class="btn btn-primary" onclick="app.controllers.autoController.addForm()">Add New Vehicle</button>'
         document.getElementById('place-form').innerHTML = template
+        getAutos()
     }
 
     this.addForm = function () {
@@ -68,5 +71,6 @@ function AutoController() {
         document.getElementById('place-form').innerHTML = template
         autoService.getAutos(drawAutos)
     }
+
 
 }
